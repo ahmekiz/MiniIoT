@@ -11,6 +11,7 @@ export default function App() {
   const statusColor= isOn ? 'green' : 'red'
   const canİncreaseBrightness = brightness < 100;
   const canDecreaseBrightness = brightness > 0;
+  const effectiveBrightness = isOn ? brightness : 0;
   function handleIncreaseBrightness() {
     const nextBrigtness = brightness + 10
     if(nextBrigtness > 100) {
@@ -35,7 +36,8 @@ export default function App() {
       <Pressable onPress={handleToggle}>
           <Text style={{color: statusColor}}>{isOn ? 'Turn Off' : 'Turn On'}</Text>
       </Pressable>
-      <Text>Brightness: {brightness}%</Text>
+      <Text>Configured Brightness: {brightness}%</Text>
+      <Text>Effective Brightness: {effectiveBrightness}%</Text>
       <Pressable onPress={handleIncreaseBrightness} disabled={!canİncreaseBrightness}>
         <Text style={
           {opacity: canİncreaseBrightness ? 1 : 0.4}
@@ -47,10 +49,8 @@ export default function App() {
         }>Brightness - 10</Text>
       </Pressable>
       <Text>
-        {
-          info
-        }
-        </Text>
+        {info}
+      </Text>
     </View>
   );
 }
