@@ -3,6 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
+  const [isOn, setIsOn] = useState(false);
   const deviceName = 'Mini IoT LED'
   const text = 'Bu bir IoT Projesidir'
   return (
