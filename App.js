@@ -9,6 +9,20 @@ export default function App() {
   const text = 'Bu bir IoT Projesidir'
   const info = isOn ? 'LED is shining' : 'LED is currently off'
   const statusColor= isOn ? 'green' : 'red'
+  function handleIncreaseBrightness() {
+    const nextBrigtness = brightness + 10
+    if(nextBrigtness > 100) {
+      return
+    }
+    setBrightness(nextBrigtness)
+  }
+  function handleDecreaseBrightness() {
+    const priviosBrightness = brightness - 10
+    if(priviosBrightness < 0) {
+      return
+    }
+    setBrightness(priviosBrightness)
+  }
   function handleToggle() {
     setIsOn(!isOn)
   }
@@ -19,7 +33,13 @@ export default function App() {
       <Pressable onPress={handleToggle}>
           <Text style={{color: statusColor}}>{isOn ? 'Turn Off' : 'Turn On'}</Text>
       </Pressable>
-      <Text>brightness: {brightness}</Text>
+      <Text>Brightness: {brightness}</Text>
+      <Pressable onPress={handleIncreaseBrightness}>
+        <Text>Brightness + 10</Text>
+      </Pressable>
+      <Pressable onPress={handleDecreaseBrightness}>
+        <Text>Brightness - 10</Text>
+      </Pressable>
       <Text>
         {
           info
