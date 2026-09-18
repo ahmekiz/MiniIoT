@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Pressable} from 'react-native';
 
 export default function App() {
@@ -34,22 +33,43 @@ export default function App() {
     setIsOn(!isOn)
   }
   function handleIncreaseRed() {
-    const nextColor = red + 15
+    const nextColor = red + 25
     if(nextColor > 255) {
       return
     }
     setRed(nextColor)
   }
   function handleIncreaseGreen() {
-    const nextColor = green + 15
+    const nextColor = green + 25
     if(nextColor > 255) {
       return
     }
     setGreen(nextColor)
   }
   function handleIncreaseBlue() {
-    const nextColor = blue + 15
+    const nextColor = blue + 25
     if(nextColor > 255) {
+      return
+    }
+    setBlue(nextColor)
+  }
+  function handleDecreaserRed() {
+    const nextColor = red - 25
+    if(nextColor < 0) {
+      return
+    }
+    setRed(nextColor)
+  }
+  function handleDecreaseGreen() { 
+    const nextColor = green - 25
+    if(nextColor < 0) {
+      return
+    }
+    setGreen(nextColor)
+  }
+  function handleDecreaseBlue() {
+    const nextColor = blue - 25
+    if(nextColor < 0) {
       return
     }
     setBlue(nextColor)
@@ -84,13 +104,22 @@ export default function App() {
       }}
       />
       <Pressable onPress={handleIncreaseRed}>
-        <Text>Red +15</Text>
+        <Text>Red +25</Text>
       </Pressable>
       <Pressable onPress={handleIncreaseGreen}>
-        <Text>Green +15</Text>
+        <Text>Green +25</Text>
       </Pressable>
       <Pressable onPress={handleIncreaseBlue}>
-        <Text>Blue +15</Text>
+        <Text>Blue +25</Text>
+      </Pressable>
+      <Pressable onPress={handleDecreaserRed}>
+        <Text>Red - 25</Text>
+      </Pressable>
+      <Pressable onPress={handleDecreaseGreen}>
+        <Text>Green -25</Text>
+      </Pressable>
+      <Pressable onPress={handleDecreaseBlue}>
+        <Text>Blue -25</Text>
       </Pressable>
       <Text>
         {info}
