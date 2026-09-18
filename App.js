@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Pressable} from 'react-native';
+import { Image, ImageBackground, StyleSheet, Text, View, Pressable} from 'react-native';
 
 export default function App() {
   const [isOn, setIsOn] = useState(false)
@@ -30,7 +30,11 @@ export default function App() {
     setIsOn(!isOn)
   }
   return (
-    <View style={styles.container}>
+    <ImageBackground
+      source={require('./assets/background.jpeg')}
+      style={styles.background}
+      resizeMode="cover"
+      imageStyle={styles.backgroundImage}>
       <Text style={styles.title}>{text}</Text>
       <Text>{deviceName}</Text>
       <Pressable onPress={handleToggle}>
@@ -51,11 +55,24 @@ export default function App() {
       <Text>
         {info}
       </Text>
-    </View>
+      </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
+  background: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: 'hidden',
+  },
+
+  backgroundImage: {
+    transform: [
+      { scale: 1.1 },
+      { translateX: -40 },
+    ],
+  },
   container: {
     flex: 1,
     backgroundColor: '#beb9b9',
