@@ -5,6 +5,10 @@ import { StyleSheet, Text, View, Pressable} from 'react-native';
 export default function App() {
   const [isOn, setIsOn] = useState(false)
   const [brightness, setBrightness] = useState(50);
+  const [red,setRed] = useState(130)
+  const [green,setGreen] = useState(40)
+  const [blue,setBlue] = useState(220)
+  const ledColor = `rgb(${red}, ${green}, ${blue})`
   const deviceName = 'Mini IoT LED'
   const text = 'Bu bir IoT Projesidir'
   const info = isOn ? 'LED is shining' : 'LED is currently off'
@@ -29,6 +33,27 @@ export default function App() {
   function handleToggle() {
     setIsOn(!isOn)
   }
+  function handleIncreaseRed() {
+    const nextColor = red + 15
+    if(nextColor > 255) {
+      return
+    }
+    setRed(nextColor)
+  }
+  function handleIncreaseGreen() {
+    const nextColor = green + 15
+    if(nextColor > 255) {
+      return
+    }
+    setGreen(nextColor)
+  }
+  function handleIncreaseBlue() {
+    const nextColor = blue + 15
+    if(nextColor > 255) {
+      return
+    }
+    setBlue(nextColor)
+  }
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{text}</Text>
@@ -47,6 +72,25 @@ export default function App() {
         <Text style={
           {opacity: canDecreaseBrightness ? 1 : 0.4}
         }>Brightness - 10</Text>
+      </Pressable>
+      <Text>R: {red}</Text>
+      <Text>G: {green}</Text>
+      <Text>B: {blue}</Text>
+      <View
+      style={{
+        width: 100,
+        height: 100,
+        backgroundColor: ledColor,
+      }}
+      />
+      <Pressable onPress={handleIncreaseRed}>
+        <Text>Red +15</Text>
+      </Pressable>
+      <Pressable onPress={handleIncreaseGreen}>
+        <Text>Green +15</Text>
+      </Pressable>
+      <Pressable onPress={handleIncreaseBlue}>
+        <Text>Blue +15</Text>
       </Pressable>
       <Text>
         {info}
